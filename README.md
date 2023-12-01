@@ -7,25 +7,60 @@ The Intelligent Job Matching System is a Flask-based backend application designe
 
 ## ER Diagram
 
+## Entity: Job Seeker
 
-+-------------------+       +---------------------+       +-------------------+       +-------------------+
-|   Job_Seeker      |       |   Job_Posting       |       |   Application     |       |    Skill_Set      |
-+-------------------+       +---------------------+       +-------------------+       +-------------------+
-| id: PK            |       | id: PK              |<---    |id: PK            |       | id: PK            |
-| name: Text        |       | title: Text         |  |    | status: Text      |       | name: Text        |
-| status: Boolean   |       | status: Text        |  |--->| job_posting_id: FK|       | job_posting_id: FK|
-| skills: Text      |       | start_date: Date    |       |                   |       +-------------------+
-| experience: Enum  |       | end_date: Date      |       +-------------------+
-| bio: Text         |       | hiring_manager_id:FK|    
-| availability: Date|       +---------------------+    
-+-------------------+          ^
-                               | 
-+-------------------+          | 
-| Hiring_Manager    |          |
-+-------------------+          |
-| id: PK            |<----------
-| name: Text        |
-+-------------------+
+| Field          | Type            | Description              |
+| -------------- | --------------- | ------------------------ |
+| id (PK)        | Integer         | Primary Key              |
+| name           | Text            | Name of the job seeker   |
+| status         | Boolean         | Status of the job seeker |
+| skills         | Text            | Skills possessed         |
+| experience     | Enum            | Experience level         |
+| bio            | Text            | Bio of the job seeker    |
+| availability   | Date            | Availability date        |
+
+---
+
+## Entity: Job Posting
+
+| Field           | Type            | Description                   |
+| --------------- | --------------- | ----------------------------- |
+| id (PK)         | Integer         | Primary Key                   |
+| title           | Text            | Title of the job posting      |
+| status          | Text            | Status of the job posting     |
+| start_date      | Date            | Start date of the job posting |
+| end_date        | Date            | End date of the job posting   |
+| hiring_manager_id | FK (Job Posting) | Foreign Key to Hiring Manager |
+
+---
+
+## Entity: Application
+
+| Field           | Type            | Description                 |
+| --------------- | --------------- | --------------------------- |
+| id (PK)         | Integer         | Primary Key                 |
+| status          | Text            | Status of the application   |
+| job_posting_id  | FK (Job Posting) | Foreign Key to Job Posting   |
+
+---
+
+## Entity: Skill Set
+
+| Field           | Type            | Description                 |
+| --------------- | --------------- | --------------------------- |
+| id (PK)         | Integer         | Primary Key                 |
+| name            | Text            | Name of the skill set        |
+| job_posting_id  | FK (Job Posting) | Foreign Key to Job Posting   |
+
+---
+
+## Entity: Hiring Manager
+
+| Field           | Type            | Description              |
+| --------------- | --------------- | ------------------------ |
+| id (PK)         | Integer         | Primary Key              |
+| name            | Text            | Name of the hiring manager|
+
 
 
 
