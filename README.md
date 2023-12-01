@@ -5,6 +5,30 @@ The Intelligent Job Matching System is a Flask-based backend application designe
 
 
 
+## ER Diagram
+
+
++-------------------+       +---------------------+       +-------------------+       +-------------------+
+|   Job_Seeker      |       |   Job_Posting       |       |   Application     |       |    Skill_Set      |
++-------------------+       +---------------------+       +-------------------+       +-------------------+
+| id: PK            |       | id: PK              |<---    |id: PK            |       | id: PK            |
+| name: Text        |       | title: Text         |  |    | status: Text      |       | name: Text        |
+| status: Boolean   |       | status: Text        |  |--->| job_posting_id: FK|       | job_posting_id: FK|
+| skills: Text      |       | start_date: Date    |       |                   |       +-------------------+
+| experience: Enum  |       | end_date: Date      |       +-------------------+
+| bio: Text         |       | hiring_manager_id:FK|    
+| availability: Date|       +---------------------+    
++-------------------+          ^
+                               | 
++-------------------+          | 
+| Hiring_Manager    |          |
++-------------------+          |
+| id: PK            |<----------
+| name: Text        |
++-------------------+
+
+
+
 ## API Endpoints
 
 ### Job Seekers
